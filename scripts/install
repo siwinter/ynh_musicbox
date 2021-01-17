@@ -74,6 +74,13 @@ ynh_app_setting_set --app=$app --key=is_public --value=$is_public
 #=================================================
 # STANDARD MODIFICATIONS
 #=================================================
+# CREATE YUNOHOST.MULTIMEDIA DIRECTORY
+#=================================================
+ynh_script_progression --message="Creating yunohost.multimedia directory..." --weight=1
+
+ynh_multimedia_build_main_dir
+
+#=================================================
 # FIND AND OPEN A PORT
 #=================================================
 ynh_script_progression --message="Configuring firewall..." --time --weight=1
