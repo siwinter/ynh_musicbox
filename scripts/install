@@ -74,17 +74,17 @@ ynh_script_progression --message="Installing dependencies..." --time --weight=1
 #=================================================
 ynh_script_progression --message="Installing extra repo..." --time --weight=1
 
-#wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
-#wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list
-#apt update
+wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
+wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list
+apt update
 
 ynh_script_progression --message="Installing mopidy..." --time --weight=1
-#apt install -y mopidy
+apt install -y mopidy
 
 ynh_script_progression --message="Installing extensions..." --time --weight=1 
-#apt install -y mopidy-local
-#python3 -m pip install Mopidy-MusicBox-Webclient
-#python3 -m pip install Mopidy-YouTube
+apt install -y mopidy-local
+python3 -m pip install Mopidy-MusicBox-Webclient
+python3 -m pip install Mopidy-YouTube
  
 #=================================================
 # NGINX CONFIGURATION
