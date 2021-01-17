@@ -41,8 +41,8 @@ password=$YNH_APP_ARG_PASSWORD
 ### The app instance name is probably what interests you most, since this is
 ### guaranteed to be unique. This is a good unique identifier to define installation path,
 ### db names, ...
-#app=$YNH_APP_INSTANCE_NAME
-app="mopidy"
+app=$YNH_APP_INSTANCE_NAME
+#app="mopidy"
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
