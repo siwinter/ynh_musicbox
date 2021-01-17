@@ -3,10 +3,10 @@
     "id": "musicbox",
     "packaging_format": 1,
     "description": {
-        "en": "webclient for mopidy from musicbox project"
+        "en": "webclient to control mopidy music server"
     },
     "version": "1.0~ynh1",
-    "url": "https://example.com",
+    "url": "https://www.mopidy.com/",
     "license": "free",
     "maintainer": {
         "name": "John doe",
@@ -16,7 +16,7 @@
     "requirements": {
         "yunohost": ">= 3.5"
     },
-    "multi_instance": true,
+    "multi_instance": false,
     "services": [
         "nginx"
     ],
@@ -26,7 +26,7 @@
                 "name": "domain",
                 "type": "domain",
                 "ask": {
-                    "en": "Choose a domain name for ynhexample"
+                    "en": "Choose a domain name for musicbox"
                 },
                 "example": "example.com"
             },
@@ -38,16 +38,7 @@
                     "fr": "Choisissez un chemin pour ynhexample"
                 },
                 "example": "/example",
-                "default": "/example"
-            },
-            {
-                "name": "admin",
-                "type": "user",
-                "ask": {
-                    "en": "Choose an admin user",
-                    "fr": "Choisissez l’administrateur"
-                },
-                "example": "johndoe"
+                "default": "/musicbox"
             },
             {
                 "name": "is_public",
@@ -57,16 +48,6 @@
                     "fr": "Est-ce une application publique ?"
                 },
                 "default": true
-            },
-            {
-                "name": "language",
-                "type": "string",
-                "ask": {
-                    "en": "Choose the application language",
-                    "fr": "Choisissez la langue de l'application"
-                },
-                "choices": ["fr", "en"],
-                "default": "fr"
             }
         ]
     }
