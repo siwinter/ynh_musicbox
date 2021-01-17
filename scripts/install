@@ -108,8 +108,7 @@ ynh_script_progression --message="Installing extra repo..." --time --weight=1
 #apt update
 
 ynh_script_progression --message="Installing mopidy..." --time --weight=1
-#apt install -y mopidy
-
+#apt install -y mopidy mopidy-local
 ynh_script_progression --message="Installing extensions..." --time --weight=1
 #python3 -m pip install Mopidy-MusicBox-Webclient
 
@@ -178,11 +177,8 @@ ynh_add_nginx_config
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
-
-### `ynh_replace_string` is used to replace a string in a file.
-### (It's compatible with sed regular expressions syntax)
-
-#ynh_replace_string --match_string="match_string" --replace_string="replace_string" --target_file="$final_path/CONFIG_FILE"
+cat ../conf/mopidy.conf > /etc/mopidy/mopidy.conf
+ynh_replace_string --match_string="__PORT__" --replace_string=$port --target_file="/etc/mopidy/mopidy.conf"
 
 #=================================================
 # STORE THE CONFIG FILE CHECKSUM
