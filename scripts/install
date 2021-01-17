@@ -41,8 +41,8 @@ password=$YNH_APP_ARG_PASSWORD
 ### The app instance name is probably what interests you most, since this is
 ### guaranteed to be unique. This is a good unique identifier to define installation path,
 ### db names, ...
-app=$YNH_APP_INSTANCE_NAME
-
+#app=$YNH_APP_INSTANCE_NAME
+app="mopidy"
 #=================================================
 # CHECK IF THE APP CAN BE INSTALLED WITH THESE ARGS
 #=================================================
@@ -151,26 +151,26 @@ ynh_add_nginx_config
 ### forms.
 
 # Set right permissions for curl install
-chown -R $app: $final_path
+#chown -R $app: $final_path
 
 # Set the app as temporarily public for curl call
-ynh_script_progression --message="Configuring SSOwat..." --time --weight=1
-ynh_app_setting_set --app=$app --key=skipped_uris --value="/"
+#ynh_script_progression --message="Configuring SSOwat..." --time --weight=1
+#ynh_app_setting_set --app=$app --key=skipped_uris --value="/"
 # Reload SSOwat config
-yunohost app ssowatconf
+#yunohost app ssowatconf
 
 # Reload Nginx
-ynh_systemd_action --service_name=nginx --action=reload
+#ynh_systemd_action --service_name=nginx --action=reload
 
 # Installation with curl
-ynh_script_progression --message="Finalizing installation..." --time --weight=1
-ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
+#ynh_script_progression --message="Finalizing installation..." --time --weight=1
+#ynh_local_curl "/INSTALL_PATH" "key1=value1" "key2=value2" "key3=value3"
 
 # Remove the public access
-if [ $is_public -eq 0 ]
-then
-	ynh_app_setting_delete --app=$app --key=skipped_uris
-fi
+#if [ $is_public -eq 0 ]
+#then
+#	ynh_app_setting_delete --app=$app --key=skipped_uris
+#fi
 
 #=================================================
 # MODIFY A CONFIG FILE
@@ -203,7 +203,7 @@ ynh_store_file_checksum --file="/etc/mopidy/mopidy.conf"
 ### that really need such authorization.
 
 # Set permissions to app files
-chown -R root: $final_path
+#chown -R root: $final_path
 
 #=================================================
 # SETUP LOGROTATE
@@ -219,7 +219,7 @@ ynh_script_progression --message="Configuring log rotation..." --time --weight=1
 ###		- And the section "SETUP LOGROTATE" in the upgrade script
 
 # Use logrotate to manage application logfile(s)
-ynh_use_logrotate
+#ynh_use_logrotate
 
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
@@ -233,7 +233,7 @@ ynh_use_logrotate
 ###		- Remove the section "REMOVE SERVICE FROM ADMIN PANEL" in the remove script
 ###		- As well as the section "ADVERTISE SERVICE IN ADMIN PANEL" in the restore script
 
-yunohost service add $app --description "A short description of the app" --log "/var/log/$app/$app.log"
+yunohost service add $app --description "this is mopidy" --log "/var/log/$app/$app.log"
 
 ### With YunoHost 3.8 you will then be able to: 
 ### - specify a list of ports that needs to be publicly exposed (c.f. --needs_exposed_ports) 
@@ -260,24 +260,16 @@ ynh_script_progression --message="Starting a systemd service..." --time --weight
 ynh_systemd_action --service_name=$app --action="start" --log_path="/var/log/$app/$app.log"
 
 #=================================================
-# SETUP FAIL2BAN
-#=================================================
-ynh_script_progression --message="Configuring fail2ban..." --time --weight=1
-
-# Create a dedicated fail2ban config
-ynh_add_fail2ban_config --logpath="/var/log/nginx/${domain}-error.log" --failregex="Regex to match into the log for a failed login"
-
-#=================================================
 # SETUP SSOWAT
 #=================================================
 ynh_script_progression --message="Configuring SSOwat..." --time --weight=1
 
 # Make app public if necessary
-if [ $is_public -eq 1 ]
-then
+#if [ $is_public -eq 1 ]
+#then
 	# unprotected_uris allows SSO credentials to be passed anyway.
-	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
-fi
+#	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+#fi
 
 #=================================================
 # RELOAD NGINX
