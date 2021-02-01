@@ -23,11 +23,11 @@ port=$(ynh_app_setting_get --app=$app --key=port)
 # STANDARD REMOVE
 #=================================================
 # Remove application
-python3 -m pip install Mopidy-MusicBox-Webclient
-python3 -m pip install Mopidy-YouTube
+#python3 -m pip uninstall Mopidy-MusicBox-Webclient
+#python3 -m pip uninstall Mopidy-YouTube
 
-apt remove --purge -y mopidy-local
-apt remove --purge -y mopidy
+#apt remove --purge -y mopidy-local
+#apt remove --purge -y mopidy
 
 # REMOVE SERVICE INTEGRATION IN YUNOHOST
 #=================================================
