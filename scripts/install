@@ -67,24 +67,24 @@ ynh_exec_warn_less yunohost firewall allow --no-upnp TCP $port
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --time --weight=1
-ynh_install_app_dependencies $pkg_dependencies
+#ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # INSTALL 
 #=================================================
 ynh_script_progression --message="Installing extra repo..." --time --weight=1
 
-wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
-wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list
-apt update
+#wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
+#wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list
+#apt update
 
 ynh_script_progression --message="Installing mopidy..." --time --weight=1
-apt install -y mopidy
+#apt install -y mopidy
 
-ynh_script_progression --message="Installing extensions..." --time --weight=1 
-apt install -y mopidy-local
-python3 -m pip install Mopidy-MusicBox-Webclient
-python3 -m pip install Mopidy-YouTube
+#ynh_script_progression --message="Installing extensions..." --time --weight=1 
+#apt install -y mopidy-local
+#python3 -m pip install Mopidy-MusicBox-Webclient
+#python3 -m pip install Mopidy-YouTube
  
 #=================================================
 # NGINX CONFIGURATION
@@ -202,7 +202,7 @@ ynh_systemd_action --service_name="mopidy" --action="start" --log_path="/var/log
 #=================================================
 ynh_script_progression --message="Configuring SSOwat..." --time --weight=1
 
-ynh_permission_url permission "main" add_url="mopidy" auth_header=false
+ynh_permission_url main add_url="mopidy" auth_header=false
 
 # Make app public if necessary
 if [ $is_public -eq 1 ]
