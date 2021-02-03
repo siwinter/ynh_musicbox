@@ -211,7 +211,7 @@ then
 	ynh_permission_update --permission="main" --add="visitors"
 fi
 
-ynh_permission_url --permission="main" --add_url="mopidy"
+ynh_permission_url --permission="main" --add_url="dsbg.mooo.com/mopidy"
 
 #=================================================
 # RELOAD NGINX
