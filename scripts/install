@@ -211,8 +211,7 @@ then
 	ynh_permission_update --permission="main" --add="visitors"
 fi
 
-#ynh_permission_url main add_url="mopidy" auth_header=false
-
+ynh_permission_url --permission="main" --add_url="mopidy"
 
 #=================================================
 # RELOAD NGINX
