@@ -206,12 +206,10 @@ ynh_script_progression --message="Configuring SSOwat..." --time --weight=1
 # Make app public if necessary
 if [ $is_public -eq 1 ]
 then
-	# unprotected_uris allows SSO credentials to be passed anyway.
-# depreciated :	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
 	ynh_permission_update --permission="main" --add="visitors"
 fi
 
-ynh_permission_url --permission="main" --add_url="dsbg.mooo.com/mopidy"
+ynh_permission_url --permission="main" --add_url="$domain/mopidy"
 
 #=================================================
 # RELOAD NGINX
