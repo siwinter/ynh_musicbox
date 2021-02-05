@@ -67,24 +67,24 @@ ynh_exec_warn_less yunohost firewall allow --no-upnp TCP $port
 # INSTALL DEPENDENCIES
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --time --weight=1
-#ynh_install_app_dependencies $pkg_dependencies
+ynh_install_app_dependencies $pkg_dependencies
 
 #=================================================
 # INSTALL 
 #=================================================
 ynh_script_progression --message="Installing extra repo..." --time --weight=1
 #ynh_install_extra_app_dependencies --repo="https://apt.mopidy.com/buster.list" --package="mopidy mopidy-local" --key="https://apt.mopidy.com/mopidy.gpg"
-#wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
-#wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list
-#apt update
+wget -q -O - https://apt.mopidy.com/mopidy.gpg | apt-key add -
+wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list
+apt update
 
 ynh_script_progression --message="Installing mopidy..." --time --weight=1
-#apt install -y mopidy
+apt install -y mopidy
 
 ynh_script_progression --message="Installing extensions..." --time --weight=1 
-#apt install -y mopidy-local
-#python3 -m pip install Mopidy-MusicBox-Webclient
-#python3 -m pip install Mopidy-YouTube
+apt install -y mopidy-local
+python3 -m pip install Mopidy-MusicBox-Webclient
+python3 -m pip install Mopidy-YouTube
  
 #=================================================
 # NGINX CONFIGURATION
@@ -117,7 +117,6 @@ ynh_add_nginx_config
 #=================================================
 # MODIFY A CONFIG FILE
 #=================================================
-mkdir /etc/mopidy/
 cat ../conf/mopidy.conf > /etc/mopidy/mopidy.conf
 ynh_replace_string --match_string="__PORT__" --replace_string=$port --target_file="/etc/mopidy/mopidy.conf"
 ynh_replace_string --match_string="__MEDIADIR__" --replace_string="/home/yunohost.multimedia/share/Music/" --target_file="/etc/mopidy/mopidy.conf"
