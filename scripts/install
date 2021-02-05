@@ -193,8 +193,8 @@ ynh_script_progression --message="Starting a systemd service..." --time --weight
 ###		- And the section "STOP SYSTEMD SERVICE" and "START SYSTEMD SERVICE" in the change_url script
 
 # Start a systemd service
-#mopidyctl local scan
 #ynh_systemd_action --service_name="mopidy" --action="start" --log_path="/var/log/mopidy/mopidy.log"
+#mopidyctl local scan
 
 #=================================================
 # SETUP SSOWAT
