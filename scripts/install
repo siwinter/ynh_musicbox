@@ -169,7 +169,7 @@ ynh_script_progression --message="Configuring log rotation..." --time --weight=1
 ###		- Remove the section "REMOVE SERVICE FROM ADMIN PANEL" in the remove script
 ###		- As well as the section "ADVERTISE SERVICE IN ADMIN PANEL" in the restore script
 
-yunohost service add mopidy --log_type systemd --description "this is mopidy, a music server"
+yunohost service add mopidy --log_type systemd --description "this is mopidy, a music server" --test_conf "mopidyctl config"
 
 ### With YunoHost 3.8 you will then be able to: 
 ### - specify a list of ports that needs to be publicly exposed (c.f. --needs_exposed_ports) 
